@@ -8,13 +8,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  
   root to: "home#index"
-
-  authenticated :user do
-    root to: "dashboard#index",  as: :users_unauthenticated_root
-  end
-
-  # root to: "home#index",  as: :unauthenticated_root
+  resources :dashboard
 
 
 end
