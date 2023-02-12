@@ -1,0 +1,8 @@
+<tr id="<%= dom_id order %>">
+  <td><%= order.client.name %></td>
+  <td><%= order.seller.name %></td>
+  <td><%= order.product.description %></td>
+  <td><%= order.number_of_pieces %></td>
+  <td><%= number_to_currency(get_total(order.number_of_pieces,order.product)) %></td>
+  <td><%= link_to "Show this order", order, class: "btn btn-outline-primary" %></td>
+</tr>
