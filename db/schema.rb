@@ -10,9 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_003852) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_083849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "batch_imports", force: :cascade do |t|
+    t.integer "total_items"
+    t.decimal "total_revenue"
+    t.jsonb "file_data"
+    t.jsonb "right_information"
+    t.jsonb "incorrect_information"
+    t.jsonb "orders"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "number_of_pieces"
+    t.bigint "client_id", null: false
+    t.bigint "seller_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_orders_on_client_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["seller_id"], name: "index_orders_on_seller_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "description"
+    t.decimal "price_per_piece"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sellers", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -40,4 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_003852) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "orders", "clients"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "sellers"
 end
