@@ -1,0 +1,77 @@
+<h1>Batch Import</h1>
+<div class="row">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              New
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= link_to "Batch import", new_batch_import_path %></div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              Total Batch import
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @batch_imports.count %></div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 mb-4">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Batch Import</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Total items</th>
+                <th>Total Revenue</th>
+                <th>File Original</th>
+                <th>Right Items</th>
+                <th>Incorrect Items</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Total items</th>
+                <th>Total Revenue</th>
+                <th>File Original</th>
+                <th>Right Items</th>
+                <th>Incorrect Items</th>
+                <th>Actions</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <% @batch_imports.each do |batch_import| %>
+              <%= render batch_import %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

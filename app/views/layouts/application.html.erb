@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Code Challenge RoR</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-auto bg-light sticky-top">
+          <%= render partial: 'layouts/sidebar' %>
+        </div>
+        <div class="col-sm p-3 min-vh-100">
+          <%= render partial: 'flash_messages/flash' %>
+          <%= yield %>
+          <!-- content -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

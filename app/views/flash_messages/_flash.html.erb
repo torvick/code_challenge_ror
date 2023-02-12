@@ -1,0 +1,41 @@
+<% if flash[:alert] %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" id='alert-alert'>
+    <%= flash[:alert] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<% if flash[:danger] %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" id='alert-danger'>
+    <%= flash[:danger] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<% if flash[:error] %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" id='alert-danger'>
+    <%= flash[:error] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" id='alert-notice'>
+    <%= flash[:notice] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<% if flash[:successfully] %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" id='alert-success'>
+    <%= flash[:successfully] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<% if flash[:warning] %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" id='alert-alert'>
+    <%= flash[:warning] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>

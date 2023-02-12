@@ -1,0 +1,19 @@
+<%= form_with(model: batch_import, data: {turbo: false}) do |form| %>
+  <div class="row p-5">
+    <div class="col-md-10">
+      <h5 class="">New batch import</h5>
+    </div>
+    <div class="col-md-12">
+      <%= form.label :File, class:"form-label" %>
+      <%= form.file_field :file, class:"form-control", required: true %>
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-md-start mt-3">
+      <%= link_to "Back to batch imports", batch_imports_path(), class: "btn btn-outline-secondary" %>
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-md-end mt-3">
+      <%= form.submit "Send", class:"btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

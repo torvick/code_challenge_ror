@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-5 card">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), data: {turbo: false}, html: { method: :post }) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
+        <div class="row p-5">
+          <div class="col-md-10">
+            <h5 class="">Forgot your password?</h5>
+          </div>
+          <div class="col-md-12">
+            <%= f.label :email, class: "form-label" %>
+            <%= f.email_field :email, required: true, autocomplete: "email" , class:"form-control" %>
+          </div>
+
+
+          <div class="col-md-12 d-flex justify-content-md-end mt-3">
+            <%= f.submit "Send me reset password instructions" , class:"btn btn-primary" %>
+          </div>
+
+          <%= render "users/shared/links" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
