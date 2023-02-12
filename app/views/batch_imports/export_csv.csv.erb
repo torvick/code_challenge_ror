@@ -1,0 +1,12 @@
+<%- headers = ["Cliente", "Descripción del Producto", "Precio por pieza", "Numero de piezas", "Diección del vendedor", "Nombre del Vendedor"] -%>
+<%= CSV.generate_line headers %>
+<%- @file.each do |item| -%>
+  <%= CSV.generate_line([
+    item["Cliente"],
+    item["Descripción del Producto"],
+    item["Precio por pieza"],
+    item["Numero de piezas"],
+    item["Diección del vendedor"].to_s.delete(','),
+    item["Nombre del Vendedor"]
+  ]) -%>
+<%- end -%>

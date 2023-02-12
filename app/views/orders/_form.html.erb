@@ -1,4 +1,5 @@
 <%= form_with(model: order) do |form| %>
+<div class="row p-5">
   <% if order.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -10,28 +11,36 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :number_of_pieces, style: "display: block" %>
-    <%= form.number_field :number_of_pieces %>
+  <div class="col-md-10">
+    <h5 class="">New Order</h5>
   </div>
 
-  <div>
-    <%= form.label :client_id, style: "display: block" %>
-    <%= form.text_field :client_id %>
+  <div class="col-md-12">
+    <%= form.label :number_of_pieces, class:"form-label" %>
+    <%= form.number_field :number_of_pieces, class:"form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :seller_id, style: "display: block" %>
-    <%= form.text_field :seller_id %>
+  <div class="col-md-12">
+    <%= form.label :client_id, class:"form-label" %>
+    <%= form.text_field :client_id, class:"form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :product_id, style: "display: block" %>
-    <%= form.text_field :product_id %>
+  <div class="col-md-12">
+    <%= form.label :seller_id, class:"form-label" %>
+    <%= form.text_field :seller_id, class:"form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="col-md-12">
+    <%= form.label :product_id, class:"form-label" %>
+    <%= form.text_field :product_id, class:"form-control", required: true %>
   </div>
+
+  <div class="col-md-6 d-flex justify-content-md-start mt-3">
+    <%= link_to "Back to orders", orders_path(), class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="col-md-6 d-flex justify-content-md-end mt-3">
+    <%= form.submit "Send", class:"btn btn-primary" %>
+  </div>
+</div>
 <% end %>

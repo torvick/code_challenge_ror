@@ -1,4 +1,5 @@
 <%= form_with(model: seller) do |form| %>
+<div class="row p-5">
   <% if seller.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(seller.errors.count, "error") %> prohibited this seller from being saved:</h2>
@@ -10,18 +11,26 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="col-md-10">
+    <h5 class="">New Seller</h5>
   </div>
 
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
+  <div class="col-md-12">
+    <%= form.label :name, class:"form-label" %>
+    <%= form.text_field :name, class:"form-control", required: true  %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="col-md-12">
+    <%= form.label :address, class:"form-label" %>
+    <%= form.text_field :address, class:"form-control", required: true  %>
   </div>
+
+  <div class="col-md-6 d-flex justify-content-md-start mt-3">
+    <%= link_to "Back to sellers", sellers_path(), class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="col-md-6 d-flex justify-content-md-end mt-3">
+    <%= form.submit "Send", class:"btn btn-primary" %>
+  </div>
+</div>
 <% end %>
