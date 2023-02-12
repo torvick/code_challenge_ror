@@ -1,0 +1,187 @@
+<div class="row">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              Back
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= link_to "Batch Imports", batch_imports_path %></div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              Total Revenue</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= number_to_currency(@batch_import.total_revenue) %></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Items Process
+              </div>
+              <div class="row no-gutters align-items-center">
+                <div class="col-auto">
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= @batch_import.total_items %></div>
+                </div>
+                <div class="col">
+                  <div class="progress progress-sm mr-2">
+                    <div class="progress-bar bg-info" role="progressbar"
+                    style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                New
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= link_to "Batch Imports", new_batch_import_path() %></div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-xl-6 col-md-6 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Right Information</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Cliente	</th>
+                  <th>Descripción del Producto	</th>
+                  <th>Precio por pieza	</th>
+                  <th>Numero de piezas	</th>
+                  <th>Diección del vendedor	</th>
+                  <th>Nombre del Vendedor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @batch_import.right_information.each do |batch_import| %>
+                <tr>
+                  <td><%= batch_import['Cliente'] %></td>
+                  <td><%= batch_import['Descripción del Producto'] %></td>
+                  <td><%= batch_import['Precio por pieza'] %></td>
+                  <td><%= batch_import['Numero de piezas'] %></td>
+                  <td><%= batch_import['Diección del vendedor'] %></td>
+                  <td><%= batch_import['Nombre del Vendedor'] %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-md-6 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Incorrect Information</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Cliente	</th>
+                  <th>Descripción del Producto	</th>
+                  <th>Precio por pieza	</th>
+                  <th>Numero de piezas	</th>
+                  <th>Diección del vendedor	</th>
+                  <th>Nombre del Vendedor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @batch_import.incorrect_information.each do |batch_import| %>
+                <tr>
+                  <td><%= batch_import['Cliente'] %></td>
+                  <td><%= batch_import['Descripción del Producto'] %></td>
+                  <td><%= batch_import['Precio por pieza'] %></td>
+                  <td><%= batch_import['Numero de piezas'] %></td>
+                  <td><%= batch_import['Diección del vendedor'] %></td>
+                  <td><%= batch_import['Nombre del Vendedor'] %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-12 col-md-12 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">File data</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Cliente	</th>
+                  <th>Descripción del Producto	</th>
+                  <th>Precio por pieza	</th>
+                  <th>Numero de piezas	</th>
+                  <th>Diección del vendedor	</th>
+                  <th>Nombre del Vendedor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @batch_import.file_data.each do |batch_import| %>
+                <tr>
+                  <td><%= batch_import['Cliente'] %></td>
+                  <td><%= batch_import['Descripción del Producto'] %></td>
+                  <td><%= batch_import['Precio por pieza'] %></td>
+                  <td><%= batch_import['Numero de piezas'] %></td>
+                  <td><%= batch_import['Diección del vendedor'] %></td>
+                  <td><%= batch_import['Nombre del Vendedor'] %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
