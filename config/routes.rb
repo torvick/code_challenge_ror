@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :batch_imports
+  resources :batch_imports do
+    member do
+      get :export_csv
+    end
+  end
   resources :orders
   resources :products
   resources :sellers

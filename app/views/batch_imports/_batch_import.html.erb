@@ -1,8 +1,17 @@
 <tr id="<%= dom_id batch_import %>">
   <td><%= batch_import.total_items %></td>
   <td><%= number_to_currency(batch_import.total_revenue )%></td>
-  <td><%= batch_import.file_data.count %></td>
-  <td><%= batch_import.right_information.count %></td>
-  <td><%= batch_import.incorrect_information.count %></td>
-  <td><%= link_to "Show this batch import", batch_import %></td>
+  <td>
+    <%= link_to 'Original File', export_csv_batch_import_path({id: batch_import.id, format: :csv, type: 'original'}),class: "btn btn-outline-secondary" %>
+    <%#= link_to "Original Items CSV export", export_csv_batch_import_path({id: batch_import.id, format: :csv}), download: ['OriginalFile', Date.today].join(' ') %>
+  </td>
+  <td>
+    <%= link_to "Download Right Items #{batch_import.right_information.count}", export_csv_batch_import_path({id: batch_import.id, format: :csv, type: 'right'}),class: "btn btn-outline-success" %>
+    <%#= batch_import.right_information.count %>
+  </td>
+  <td>
+    <%= link_to "Download Incorrect Items #{batch_import.incorrect_information.count}", export_csv_batch_import_path({id: batch_import.id, format: :csv, type: 'incorrect'}),class: "btn btn-outline-danger" %>
+    <%#= batch_import.incorrect_information.count %>
+  </td>
+  <td><%= link_to "Show this batch import", batch_import, class: "btn btn-outline-primary" %></td>
 </tr>

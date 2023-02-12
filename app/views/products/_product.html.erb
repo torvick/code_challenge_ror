@@ -1,5 +1,5 @@
 <tr id="<%= dom_id product %>">
   <td><%= product.description %></td>
-  <td><%= product.price_per_piece %></td>
-  <td><%= link_to "Show this product", product %></td>
+  <td><%= number_to_currency(product.price_per_piece) %></td>
+  <td><%= link_to "Edit this product", edit_product_path(product), class: "btn btn-outline-primary" %> </td>
 </tr>

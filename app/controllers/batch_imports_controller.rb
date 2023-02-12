@@ -1,5 +1,5 @@
 class BatchImportsController < ApplicationController
-  before_action :set_batch_import, only: %i[ show edit update destroy ]
+  before_action :set_batch_import, only: %i[ show edit update destroy export_csv]
 
   # GET /batch_imports or /batch_imports.json
   def index
@@ -66,6 +66,29 @@ class BatchImportsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to batch_imports_url, notice: "Batch import was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def export_csv
+    case params[:type]
+    when 'original'
+      @file = @batch_import.file_data
+      filename = "#{@batch_import.id}-OriginalFile-#{Time.now.to_i}"
+    when 'right'
+      @file = @batch_import.right_information
+      filename = "#{@batch_import.id}-RightItemsFile-#{Time.now.to_i}"
+    when 'incorrect'
+      @file = @batch_import.incorrect_information
+      filename = "#{@batch_import.id}-IncorrectItemsFile-#{Time.now.to_i}"
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=#{filename}.csv"
+        render template: 'batch_imports/export_csv'
+      end
     end
   end
 

@@ -1,4 +1,6 @@
 <tr id="<%= dom_id client %>">
   <td><%= client.name %></td>
-  <td><%= link_to "Show this client", client %></td>
+  <td>
+    <%= link_to "Edit this client", edit_client_path(client), class: "btn btn-outline-primary" %>
+  </td>
 </tr>

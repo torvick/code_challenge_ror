@@ -23,17 +23,21 @@ class BatchImport < ApplicationRecord
       return spreadsheet
     else
       header = spreadsheet[:data].row(1)
-      if header == ["Cliente", "Descripción del Producto", "Precio por pieza", "Numero de piezas", "Diección del vendedor", "Nombre del Vendedor"]
+      if header == row_keys
         (2..spreadsheet[:data].last_row).each do |i|
           row = Hash[[header, spreadsheet[:data].row(i)].transpose]
           @args[:file_data] << row
-          genrate_order = GenerateOrder.build!(row)
-          if genrate_order[:status]
-            @args[:right_information] << row
-            @args[:orders] << genrate_order[:order]
-            @args[:total_revenue] += (row['Numero de piezas'].to_i * row['Precio por pieza'].to_f)
-          else
+          if row.values.include?(nil) or row.values.include?('')
             @args[:incorrect_information] << row
+          else
+            genrate_order = GenerateOrder.build!(row)
+            if genrate_order[:status]
+              @args[:right_information] << row
+              @args[:orders] << genrate_order[:order]
+              @args[:total_revenue] += (row['Numero de piezas'].to_i * row['Precio por pieza'].to_f)
+            else
+              @args[:incorrect_information] << row
+            end
           end
           @args[:total_items] += 1
         end
@@ -51,6 +55,10 @@ class BatchImport < ApplicationRecord
     when ".xlsx" then {status: true, data: Roo::Excelx.new(file.path)}
     else return {status: false, message: "Unknown file type: #{file.original_filename}"}
     end
+  end
+
+  def self.row_keys
+    ["Cliente", "Descripción del Producto", "Precio por pieza", "Numero de piezas", "Diección del vendedor", "Nombre del Vendedor"]
   end
 
 end
