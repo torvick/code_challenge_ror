@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :batch_imports
+  resources :orders
+  resources :products
+  resources :sellers
+  resources :clients
   devise_for :users, controllers: {
     # sessions: 'users/sessions',
     # registrations: 'users/registrations',
@@ -8,9 +13,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  
-  root to: "home#index"
-  resources :dashboard
 
+  root to: "home#index"
+  get "dashboard", to: "dashboard#index"
 
 end
